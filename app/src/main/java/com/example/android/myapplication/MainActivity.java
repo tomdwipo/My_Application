@@ -24,11 +24,21 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             ,  "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a","w","f"
     };
 
+    private ArrayList<Country> countries = new ArrayList<>();
+
+    private void initialdumies(){
+        Country country = new Country("Indonesia");
+        country.setCapitalCity("jakarta");
+        country.setImageId(R.drawable.androidparty);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initialdumies();
+
         reset = (Button)findViewById(R.id.reset);
 
         listv = (ListView)findViewById(R.id.list);

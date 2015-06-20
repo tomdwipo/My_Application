@@ -15,6 +15,7 @@
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
         android:actionViewClass="android.support.v7.widget.SearchView"
 
+
         app:showAsAction="ifRoom" />
 
 </menu>

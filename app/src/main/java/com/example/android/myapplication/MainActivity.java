@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listv;
+    private Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        reset = (Button)findViewById(R.id.reset);
+
         listv = (ListView)findViewById(R.id.list);
         final String[] list = new String[]{
                 "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem searchItem = menu.findItem()
         return true;
     }
 
@@ -44,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void reset (View v){
+        reset.setText("Clear");
+
     }
 }

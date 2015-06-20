@@ -10,10 +10,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
     private ListView listv;
     private Button reset;
+    final String[] list = new String[]{
+            "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
+            ,  "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a","w","f"
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
 
         listv = (ListView)findViewById(R.id.list);
         final String[] list = new String[]{
-                "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
+                "fadfsg","hggg","ghgfF","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
                 ,  "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a","w","f"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
@@ -46,6 +54,9 @@ public class MainActivity extends AppCompatActivity{
 
          @Override
          public boolean onQueryTextChange(String newText) {
+
+             Toast.makeText(getApplicationContext(),"keyword = "+newText,Toast.LENGTH_LONG).show();
+            filter(newText);
              return false;
          }
      });
@@ -69,6 +80,24 @@ public class MainActivity extends AppCompatActivity{
 
     public void reset (View v){
         reset.setText("Clear");
+
+    }
+    public void filter (String keyword){
+        ArrayList<String> result = new ArrayList<String>();
+        for(int i =0 ; i<  list.length;i++){
+            String country = list[i];
+            if (country.toLowerCase().contains(keyword)){
+                result.add(country);
+
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,
+                result);
+        listv.setAdapter(adapter);
+
+        if (keyword.equals("f")){
+            setContentView(R.layout.activity_detail);
+        }
 
     }
 }

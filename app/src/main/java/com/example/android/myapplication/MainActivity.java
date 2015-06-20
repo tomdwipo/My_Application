@@ -14,11 +14,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     private ListView listv;
     private Button reset;
     final String[] list = new String[]{
-            "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
+            "fadfsg","hggg","ghgfF","f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a"
             ,  "f","h","g","h","e","t", "w","p","a",  "f","h","g","h","e","t", "w","p","a","w","f"
     };
 
@@ -46,20 +46,7 @@ public class MainActivity extends AppCompatActivity{
         MenuItem searchItem = menu.findItem(R.id.search_bar);
         SearchView sSearchView =(SearchView) MenuItemCompat.getActionView(searchItem);
         //if()
-     sSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-         @Override
-         public boolean onQueryTextSubmit(String query) {
-             return false;
-         }
-
-         @Override
-         public boolean onQueryTextChange(String newText) {
-
-             Toast.makeText(getApplicationContext(),"keyword = "+newText,Toast.LENGTH_LONG).show();
-            filter(newText);
-             return false;
-         }
-     });
+     sSearchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -99,5 +86,18 @@ public class MainActivity extends AppCompatActivity{
             setContentView(R.layout.activity_detail);
         }
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        filter(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Toast.makeText(getApplicationContext(), "keyword = " + newText, Toast.LENGTH_LONG).show();
+        filter(newText);
+        return false;
     }
 }

@@ -1,7 +1,9 @@
 package com.example.android.myapplication;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     private ListView listv;
     private Button reset;
 
@@ -33,7 +35,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem()
+        MenuItem searchItem = menu.findItem(R.id.search_bar);
+        SearchView sSearchView =(SearchView) MenuItemCompat.getActionView(searchItem);
+        //if()
+     sSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+         @Override
+         public boolean onQueryTextSubmit(String query) {
+             return false;
+         }
+
+         @Override
+         public boolean onQueryTextChange(String newText) {
+             return false;
+         }
+     });
         return true;
     }
 

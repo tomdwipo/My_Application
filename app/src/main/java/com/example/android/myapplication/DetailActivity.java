@@ -1,17 +1,34 @@
 package com.example.android.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class DetailActivity extends AppCompatActivity {
+    private Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        extras = getIntent().getExtras();
+        if (extras != null){
+            String name = extras.getString("item");
+
+
+
+            showDetails(name);
+
+
+        }
     }
+    public void showDetails(String nName){
+
+
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

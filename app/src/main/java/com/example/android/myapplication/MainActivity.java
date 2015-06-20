@@ -1,5 +1,6 @@
 package com.example.android.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener{
     private ListView listv;
     private Button reset;
     final String[] list = new String[]{
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1,android.R.id.text1,list);
         listv.setAdapter(adapter);
+        listv.setOnItemClickListener(this);
     }
 
     @Override
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void reset (View v){
+
         reset.setText("Clear");
 
     }
@@ -99,5 +103,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         Toast.makeText(getApplicationContext(), "keyword = " + newText, Toast.LENGTH_LONG).show();
         filter(newText);
         return false;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //Go to DetailActivity and send clicked item's data
+        String countries = listv.getAdapter().getItem(position).toString();
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra("item",countries);
+        startActivity(intent);
     }
 }

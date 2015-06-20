@@ -4,29 +4,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
     private Bundle extras;
+    private ListView list1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
         extras = getIntent().getExtras();
         if (extras != null){
             String name = extras.getString("item");
-
-
-
             showDetails(name);
 
 
         }
     }
     public void showDetails(String nName){
-
-
-
+        Toast.makeText(getApplicationContext(),"DetailActivity",Toast.LENGTH_LONG).show();
     }
 
 
